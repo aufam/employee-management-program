@@ -26,7 +26,7 @@ OPTS_MAIN(
     (std::string, email   ,  'e'  , "email-address", "Specify `emailAddress` field"  , ""              )
 
     // filter query
-    (std::string, sort_by ,  's'  , "sort-by"      , "Specify `sort-by` query"       , ""              )
+    (std::string, sort_by ,  's'  , "sort-by"      , "Specify `sort-by` query"       , "id"            )
     ,
     (Result<void>)
 ) {
@@ -62,8 +62,8 @@ OPTS_MAIN(
         return Ok();
     }
 
-    if (mode == "edit") {
-        auto res = TRY(finshot::Employee::Delete(id));
+    if (mode == "delete") {
+        auto res = finshot::Employee::Delete(id);
         fmt::println("{}", res);
         return Ok();
     }
