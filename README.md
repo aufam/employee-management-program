@@ -7,11 +7,11 @@ It also includes an HTTP mode for running as a server and a test mode for runnin
 
 ## Usage
 ```
-emp [OPTIONS]
+./emp [OPTIONS]
 ```
 
 ## Modes
-The CLI operates in different modes, specified using the `-m` or `--mode` option:
+The CLI operates in different modes, specified using the `--mode` option:
 
 | Mode    | Description |
 |---------|-------------|
@@ -24,16 +24,16 @@ The CLI operates in different modes, specified using the `-m` or `--mode` option
 | `test`  | Run tests |
 
 ## Options
-| Option | Short | Long | Description | Default |
-|--------|-------|------|-------------|---------|
-| `mode` | `-m`  | `--mode` | Specify mode (add, list, view, edit, delete, http, test) | `http` |
-| `host` | `-H`  | `--host` | Specify host and port (for HTTP mode) | `localhost:5000` |
-| `id`   | `-i`  | `--id` | Specify employee ID | `""` |
-| `name` | `-n`  | `--name` | Specify employee name | `""` |
-| `phone` | `-p`  | `--phone-number` | Specify employee phone number | `""` |
-| `position` | `-P`  | `--position` | Specify employee position | `""` |
-| `email` | `-e`  | `--email-address` | Specify employee email address | `""` |
-| `sort-by` | `-s`  | `--sort-by` | Sort employee list by field (id, name, or phone number) | `id` |
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--mode` | Specify mode (`add`, `list`, `view`, `edit`, `delete`, `http`, `test`) | `http` |
+| `--host` | Specify host and port (for HTTP mode) | `localhost:5000` |
+| `--id` | Specify employee ID | `""` |
+| `--name` | Specify employee name | `""` |
+| `--phone-number` | Specify employee phone number | `""` |
+| `--position` | Specify employee position | `""` |
+| `--email-address` | Specify employee email address | `""` |
+| `--sort-by` | Sort employee list by field (`id`, `name`, or `phone-number`) | `id` |
 
 ## Examples
 
@@ -62,11 +62,6 @@ The CLI operates in different modes, specified using the `-m` or `--mode` option
 ./emp --mode=delete --id="123"
 ```
 
-### Start HTTP Server
-```
-./emp --mode=http --host="localhost:5000"
-```
-
 ### Run Tests
 ```
 ./emp --mode=test
@@ -74,6 +69,10 @@ The CLI operates in different modes, specified using the `-m` or `--mode` option
 
 
 ## HTTP Endpoints
+Run the following command to start http server
+```
+./emp --mode=http --host="localhost:5000"
+```
 
 ### 1. Get Employee List
 **Endpoint:** `GET /api/employees`
