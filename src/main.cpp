@@ -88,3 +88,18 @@ OPTS_MAIN(
     return Err("Unknown mode");
 }
 
+// mingw cannot see weak functions
+#ifdef _WIN32
+#include <iostream>
+
+namespace Project::delameta {
+    void info(const char*, int, const std::string&) {}
+
+    void warning(const char*, int, const std::string&) {}
+
+    void panic(const char*, int, const std::string& msg) {
+        std::cerr << msg << '\n';
+        exit(1);
+    }
+}
+#endif
