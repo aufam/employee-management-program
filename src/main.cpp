@@ -1,6 +1,7 @@
 #include "employee.h"
 #include <delameta/debug.h>
 #include <delameta/opts.h>
+#include <catch2/catch_session.hpp>
 
 using namespace Project;
 using delameta::Result;
@@ -13,7 +14,9 @@ OPTS_MAIN(
     ,
     /*   Type   |  Arg    | Short |      Long      |              Help               |      Default   */
     (std::string, mode    , 'm'   , "mode"         , "Specify mode. Valid values: "
-                                                     "add, list, view, edit, delete, http", "http"     )
+                                                     "add, list, view, edit, delete, "
+                                                     "http, test"
+                                                                                    , "http"     )
 
     // http mode:
     (std::string, host    ,  'H'  , "host"         , "Specify host and port"         , "localhost:5000")
@@ -65,6 +68,20 @@ OPTS_MAIN(
     if (mode == "delete") {
         auto res = finshot::Employee::Delete(id);
         fmt::println("{}", res);
+        return Ok();
+    }
+
+    if (mode == "test") {
+        const char* argv[] = {"test", "--success"};
+        const auto argc = sizeof(argv) / sizeof(size_t);
+
+        Catch::Session session;
+        int res = session.run(argc, argv);
+
+        if (res != 0) {
+            return Err("Test failed");
+        }
+
         return Ok();
     }
 
