@@ -51,7 +51,7 @@ auto http_start(std::string host) -> Result<void> {
     };
 
     app.Delete("/api/employee").args(
-        http::arg::json_item("id")
+        http::arg::arg("id")
     )|[](std::string id) {
         return finshot::Employee::Delete(id).except(convert_error);
     };
