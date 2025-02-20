@@ -1,27 +1,28 @@
 # Employee Management CLI
+Github repo:
+https://github.com/aufam/employee-management-program
 
 ## Overview
 The **Employee Management CLI** is a command-line tool for managing employees,
 supporting various operations such as adding, listing, viewing, editing, and deleting employee records.
 It also includes an HTTP mode for running as a server and a test mode for running test cases.
 
+## Project tree
+```
+.
+├── cmake/                # CMake helper
+├── src/                  # Source code
+├── CMakeLists.txt        # Build configurations
+├── emp                   # Statically compiled (Linux)
+├── emp                   # Statically compiled (Windows)
+└── README.md             # Project doc
+```
+
 ## Usage
 ```
 ./emp [OPTIONS]
 ```
 
-## Modes
-The CLI operates in different modes, specified using the `--mode` option:
-
-| Mode    | Description |
-|---------|-------------|
-| `add`   | Add a new employee |
-| `list`  | List all employees |
-| `view`  | View details of a specific employee |
-| `edit`  | Edit an existing employee |
-| `delete` | Delete an employee |
-| `http`  | Start the application in HTTP mode |
-| `test`  | Run tests |
 
 ## Options
 | Option | Description | Default |
@@ -34,6 +35,18 @@ The CLI operates in different modes, specified using the `--mode` option:
 | `--position` | Specify employee position | `""` |
 | `--email-address` | Specify employee email address | `""` |
 | `--sort-by` | Sort employee list by field (`id`, `name`, or `phone-number`) | `id` |
+
+### Modes
+The CLI operates in different modes, specified using the `--mode` option:
+| Mode    | Description |
+|---------|-------------|
+| `add`   | Add a new employee |
+| `list`  | List all employees |
+| `view`  | View details of a specific employee |
+| `edit`  | Edit an existing employee |
+| `delete` | Delete an employee |
+| `http`  | Start the application in HTTP mode |
+| `test`  | Run tests |
 
 ## Examples
 
