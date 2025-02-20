@@ -12,6 +12,8 @@ using etl::Ok, etl::Err;
 auto finshot::Employee::Delete(
     std::string id
 ) -> Result<void> {
+    TRY(ValidateId(id));
+
     std::lock_guard<std::mutex> lock(database_mutex);
 
     std::ifstream file(database, std::ios::in);

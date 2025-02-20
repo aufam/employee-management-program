@@ -16,6 +16,8 @@ auto finshot::Employee::Edit(
     std::optional<std::string> position,
     std::optional<std::string> emailAddress
 ) -> Result<Employee> {
+    TRY(ValidateId(id));
+
     if (name) {
         TRY(ValidateField(*name));
     }

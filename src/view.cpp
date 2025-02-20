@@ -12,6 +12,8 @@ using etl::Ok, etl::Err;
 auto finshot::Employee::View(
     std::string id
 ) -> Result<Employee> {
+    TRY(ValidateId(id));
+
     std::lock_guard<std::mutex> lock(database_mutex);
 
     std::ifstream file(database);
