@@ -12,6 +12,7 @@ using etl::Ok, etl::Err;
 auto finshot::Employee::Delete(
     std::string id
 ) -> Result<void> {
+    // validate input
     TRY(ValidateId(id));
 
     std::lock_guard<std::mutex> lock(database_mutex);
@@ -24,6 +25,7 @@ auto finshot::Employee::Delete(
     std::string line;
     int target_idx = -1;
 
+    // read all data
     for (int i = 0; std::getline(file, line); ++i) {
         std::stringstream ss(line);
 
@@ -49,6 +51,7 @@ auto finshot::Employee::Delete(
 
     employees.erase(employees.begin() + target_idx);
 
+    // rewrite
     std::ofstream outfile(database, std::ios::out | std::ios::trunc);
     if (!outfile)
         return Err(Error{Status::StatusInternalServerError, "Cannot open " + database});

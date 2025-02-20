@@ -16,6 +16,7 @@ auto finshot::Employee::Edit(
     std::optional<std::string> position,
     std::optional<std::string> emailAddress
 ) -> Result<Employee> {
+    // validate inputs
     TRY(ValidateId(id));
 
     if (name) {
@@ -41,6 +42,7 @@ auto finshot::Employee::Edit(
     std::string line;
     int target_idx = -1;
 
+    // get all data and target idx
     for (int i = 0; std::getline(file, line); ++i) {
         std::stringstream ss(line);
 
@@ -64,6 +66,7 @@ auto finshot::Employee::Edit(
     if (target_idx < 0)
         return Err(Error{Status::StatusNotFound, "Id not found"});
 
+    // modify target
     auto &e = employees[target_idx];
     if (name) {
         e.name = *name;
@@ -78,6 +81,7 @@ auto finshot::Employee::Edit(
         e.emailAddress = *emailAddress;
     }
 
+    // rewrite
     std::ofstream outfile(database, std::ios::out | std::ios::trunc);
     if (!outfile)
         return Err(Error{Status::StatusInternalServerError, "Cannot open " + database});

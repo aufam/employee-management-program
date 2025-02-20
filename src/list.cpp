@@ -31,6 +31,7 @@ auto finshot::Employee::List(
     std::vector<Employee> res;
     std::string line;
 
+    // read all data
     while (std::getline(file, line)) {
         std::stringstream ss(line);
 
@@ -48,6 +49,7 @@ auto finshot::Employee::List(
         }
     }
 
+    // execute sort by
     if (sort_by == "id") {
         std::sort(res.begin(), res.end(), [&](const Employee& a, const Employee& b) {
             return ascending ? a.id < b.id : a.id > b.id;

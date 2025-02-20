@@ -12,6 +12,7 @@ using etl::Ok, etl::Err;
 auto finshot::Employee::View(
     std::string id
 ) -> Result<Employee> {
+    // validate input
     TRY(ValidateId(id));
 
     std::lock_guard<std::mutex> lock(database_mutex);
@@ -23,6 +24,7 @@ auto finshot::Employee::View(
     std::vector<Employee> res;
     std::string line;
 
+    // find the first id match
     while (std::getline(file, line)) {
         std::stringstream ss(line);
 

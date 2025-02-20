@@ -17,6 +17,7 @@ auto finshot::Employee::Add(
     std::string position,
     std::string emailAddress
 ) -> Result<Employee> {
+    // validate inputs
     TRY(Employee::ValidateField(name));
     TRY(Employee::ValidatePhoneNumber(phoneNumber));
     TRY(Employee::ValidateField(position));
@@ -24,12 +25,14 @@ auto finshot::Employee::Add(
 
     std::lock_guard<std::mutex> lock(database_mutex);
 
-    int max_id = 0;
+    // open read/write/append
     std::fstream file(database, std::ios::in | std::ios::out | std::ios::app);
     if (!file)
         return Err(Error{Status::StatusInternalServerError, "Cannot open " + database});
 
+    // find max_id
     std::string line;
+    int max_id = 0;
     while (std::getline(file, line)) {
         try {
             int read_id = std::stoi(line);
@@ -43,6 +46,7 @@ auto finshot::Employee::Add(
     if (id >= 1000)
         return Err(Error{Status::StatusInternalServerError, "Database is full"});
 
+    // update database
     auto id_str = fmt::format("{:03}", id);
     file.clear();
     file.seekp(0, std::ios::end);
