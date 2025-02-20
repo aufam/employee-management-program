@@ -14,7 +14,7 @@ It also includes an HTTP mode for running as a server and a test mode for runnin
 ├── src/                  # Source code
 ├── CMakeLists.txt        # Build configurations
 ├── emp                   # Statically compiled (Linux)
-├── emp                   # Statically compiled (Windows)
+├── emp.exe               # Statically compiled (Windows)
 └── README.md             # Project doc
 ```
 
@@ -136,7 +136,7 @@ Run the following command to start http server
 ```
 
 ### 3. Add New Employee
-**Endpoint:** `POST /employee`
+**Endpoint:** `POST /api/employee`
 
 **Request Body (JSON):**
 ```json
@@ -160,7 +160,7 @@ Run the following command to start http server
 ```
 
 ### 4. Update Employee Details
-**Endpoint:** `PUT /employee`
+**Endpoint:** `PUT /api/employee`
 
 **Request Body (JSON):**
 ```json
@@ -182,7 +182,7 @@ Run the following command to start http server
 - **500 Internal Server Error**: Server error.
 
 ### 5. Delete Employee
-**Endpoint:** `DELETE /employee`
+**Endpoint:** `DELETE /api/employee`
 
 **Request Body (JSON):**
 ```json
