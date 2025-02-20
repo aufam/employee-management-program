@@ -8,3 +8,5 @@ __pycache__
 !.gitmodules
 !.gitlab-ci.yml
 compile_commands.json
+
+database.txt
