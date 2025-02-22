@@ -52,17 +52,17 @@ The CLI operates in different modes, specified using the `--mode` option:
 
 ### Add an Employee
 ```
-./emp --method=add --name="John Doe" --phone-number="123-456-7890" --position="Engineer" --email-address="john.doe@example.com"
+./emp --mode=add --name="John Doe" --phone-number="123-456-7890" --position="Engineer" --email-address="john.doe@example.com"
 ```
 
 ### List Employees (Sorted by Name)
 ```
-./emp --method=list --sort-by=name
+./emp --mode=list --sort-by=name
 ```
 
 ### View Employee by ID
 ```
-./emp --method=view --id="123"
+./emp --mode=view --id="123"
 ```
 
 ### Edit an Employee
@@ -143,7 +143,7 @@ Run the following command to start http server
 {
   "name": "John Doe",
   "phoneNumber": "555-666-7777",
-  "position": "Software Engineer",
+  "position": "Junior Engineer",
   "emailAddress": "johndoe@example.com"
 }
 ```
@@ -161,6 +161,11 @@ Run the following command to start http server
 
 ### 4. Update Employee Details
 **Endpoint:** `PUT /api/employee`
+
+**Query Parameters:**
+| Parameter | Type   | Required | Description       |
+|-----------|--------|----------|-------------------|
+| `id`      | string | Yes      | Employee ID.      |
 
 **Request Body (JSON):**
 ```json
@@ -184,12 +189,10 @@ Run the following command to start http server
 ### 5. Delete Employee
 **Endpoint:** `DELETE /api/employee`
 
-**Request Body (JSON):**
-```json
-{
-  "id": "123"
-}
-```
+**Query Parameters:**
+| Parameter | Type   | Required | Description       |
+|-----------|--------|----------|-------------------|
+| `id`      | string | Yes      | Employee ID.      |
 
 **Response:**
 - **200 OK**: Employee successfully deleted.
